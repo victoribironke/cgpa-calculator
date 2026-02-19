@@ -1,0 +1,5 @@
+Compilation:
+javac -d out src/Main.java src/model/*.java src/ui/*.java
+
+Execution:
+java -cp out Main
