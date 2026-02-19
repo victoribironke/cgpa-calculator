@@ -1,6 +1,6 @@
 # Compile
 
-javac -d out src/Main.java src/model/_.java src/ui/_.java
+javac -d out src/Main.java src/model/\*.java src/ui/\*.java
 
 # Run
 
