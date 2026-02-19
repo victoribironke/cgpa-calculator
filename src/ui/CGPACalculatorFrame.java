@@ -64,7 +64,7 @@ public class CGPACalculatorFrame extends JFrame {
         header.setBackground(PRIMARY);
         header.setBorder(BorderFactory.createEmptyBorder(16, 24, 16, 24));
 
-        JLabel titleLabel = new JLabel("⇅  CGPA Calculator");
+        JLabel titleLabel = new JLabel("CGPA Calculator");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
         titleLabel.setForeground(Color.WHITE);
 
