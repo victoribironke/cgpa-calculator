@@ -15,7 +15,8 @@ import java.util.List;
 
 /**
  * Main application frame for the CGPA Calculator.
- * Features a tabbed pane where each tab is a semester containing a course table.
+ * Features a tabbed pane where each tab is a semester containing a course
+ * table.
  */
 public class CGPACalculatorFrame extends JFrame {
 
@@ -63,7 +64,7 @@ public class CGPACalculatorFrame extends JFrame {
         header.setBackground(PRIMARY);
         header.setBorder(BorderFactory.createEmptyBorder(16, 24, 16, 24));
 
-        JLabel titleLabel = new JLabel("📊  CGPA Calculator");
+        JLabel titleLabel = new JLabel("⇅  CGPA Calculator");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
         titleLabel.setForeground(Color.WHITE);
 
@@ -101,10 +102,10 @@ public class CGPACalculatorFrame extends JFrame {
         JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
         toolbar.setBackground(BG);
 
-        JButton addSemBtn = createStyledButton("＋ Add Semester", PRIMARY);
+        JButton addSemBtn = createStyledButton("+ Add Semester", PRIMARY);
         addSemBtn.addActionListener(e -> addSemester());
 
-        JButton removeSemBtn = createStyledButton("✕ Remove Semester", DANGER);
+        JButton removeSemBtn = createStyledButton("- Remove Semester", DANGER);
         removeSemBtn.addActionListener(e -> removeCurrentSemester());
 
         toolbar.add(addSemBtn);
@@ -121,7 +122,7 @@ public class CGPACalculatorFrame extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         // ── Table ──
-        String[] columns = {"Course Name", "Credit Hours", "Grade"};
+        String[] columns = { "Course Name", "Credit Hours", "Grade" };
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -153,7 +154,8 @@ public class CGPACalculatorFrame extends JFrame {
 
         // Credit Hours column: combo box editor (1–6)
         JComboBox<Integer> creditCombo = new JComboBox<>();
-        for (int c : GradeUtils.CREDIT_OPTIONS) creditCombo.addItem(c);
+        for (int c : GradeUtils.CREDIT_OPTIONS)
+            creditCombo.addItem(c);
         creditCombo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         TableColumn creditCol = table.getColumnModel().getColumn(1);
         creditCol.setCellEditor(new DefaultCellEditor(creditCombo));
@@ -181,9 +183,9 @@ public class CGPACalculatorFrame extends JFrame {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
         buttonPanel.setBackground(BG);
 
-        JButton addBtn = createStyledButton("＋ Add Course", ACCENT);
+        JButton addBtn = createStyledButton("+ Add Course", ACCENT);
         addBtn.addActionListener(e -> {
-            model.addRow(new Object[]{"", GradeUtils.CREDIT_OPTIONS[0], GradeUtils.GRADES[0]});
+            model.addRow(new Object[] { "", GradeUtils.CREDIT_OPTIONS[0], GradeUtils.GRADES[0] });
         });
 
         JButton removeBtn = createStyledButton("Remove Selected", DANGER);
@@ -193,8 +195,8 @@ public class CGPACalculatorFrame extends JFrame {
                 model.removeRow(row);
             } else {
                 JOptionPane.showMessageDialog(this,
-                    "Please select a course to remove.",
-                    "No Selection", JOptionPane.INFORMATION_MESSAGE);
+                        "Please select a course to remove.",
+                        "No Selection", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -230,18 +232,19 @@ public class CGPACalculatorFrame extends JFrame {
 
     private void removeCurrentSemester() {
         int selected = tabbedPane.getSelectedIndex();
-        if (selected < 0) return;
+        if (selected < 0)
+            return;
 
         if (tabbedPane.getTabCount() <= 1) {
             JOptionPane.showMessageDialog(this,
-                "You must have at least one semester.",
-                "Cannot Remove", JOptionPane.WARNING_MESSAGE);
+                    "You must have at least one semester.",
+                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         int confirm = JOptionPane.showConfirmDialog(this,
-            "Remove \"" + tabbedPane.getTitleAt(selected) + "\" and all its courses?",
-            "Confirm Removal", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                "Remove \"" + tabbedPane.getTitleAt(selected) + "\" and all its courses?",
+                "Confirm Removal", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (confirm == JOptionPane.YES_OPTION) {
             tabbedPane.removeTabAt(selected);
@@ -259,7 +262,8 @@ public class CGPACalculatorFrame extends JFrame {
      * the corresponding course list.
      */
     private void syncCoursesFromTable(int semesterIndex) {
-        if (semesterIndex < 0 || semesterIndex >= tableModels.size()) return;
+        if (semesterIndex < 0 || semesterIndex >= tableModels.size())
+            return;
 
         DefaultTableModel model = tableModels.get(semesterIndex);
         List<Course> courses = new ArrayList<>();
@@ -314,6 +318,7 @@ public class CGPACalculatorFrame extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 button.setBackground(hoverColor);
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 button.setBackground(bgColor);
